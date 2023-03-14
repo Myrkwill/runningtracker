@@ -31,7 +31,7 @@ class RunFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.fab.setOnClickListener {
-            val action = SetupFragmentDirections.actionSetupFragmentToRunFragment(it)
+            val action = RunFragmentDirections.actionRunFragmentToTrackingFragment()
             findNavController().navigate(action)
         }
     }

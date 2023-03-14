@@ -11,7 +11,6 @@
         android:id="@+id/spFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/filter_options"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +20,7 @@
         android:id="@+id/tvFilterBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sort by:"
+        android:text="@string/sort_by"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/spFilter"
         app:layout_constraintEnd_toStartOf="@+id/spFilter"
@@ -49,6 +48,7 @@
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/black" />
+        app:tint="@android:color/black"
+        android:contentDescription="@string/button_plus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

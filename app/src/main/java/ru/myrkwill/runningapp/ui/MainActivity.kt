@@ -3,14 +3,18 @@ package ru.myrkwill.runningapp.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ru.myrkwill.runningapp.R
 import ru.myrkwill.runningapp.databinding.ActivityMainBinding
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,16 +23,15 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        binding.apply {
-            val navController = fragmentContainerView.findNavController()
-            bottomNavigationView.setupWithNavController(navController)
-            navController.addOnDestinationChangedListener { _, destination, _ ->
-                when(destination.id) {
-                    R.id.settingsFragment,
-                    R.id.runFragment,
-                    R.id.statisticsFragment -> bottomNavigationView.visibility = View.VISIBLE
-                    else -> bottomNavigationView.visibility = View.GONE
-                }
+        navController = Navigation.findNavController(this, R.id.fragment_container_view)
+
+        binding.bottomNavigationView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id) {
+                R.id.settingsFragment,
+                R.id.runFragment,
+                R.id.statisticsFragment -> binding.bottomNavigationView.visibility = View.VISIBLE
+                else -> binding.bottomNavigationView.visibility = View.GONE
             }
         }
     }
